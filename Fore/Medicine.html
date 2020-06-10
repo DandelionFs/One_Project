@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deadline List</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+</head>
+<body><!--长导航栏-->
+<div class="container-fluid">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="navbar-header navbar-right">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">Deadline Tips</a>
+                </div>
+
+            </nav>
+        </div>
+    </div>
+    <!--------------------------------------------------------------------------------------->
+    <!--------------------------------------------------------------------------------------->
+    <div class="row">
+        <!----------------------------------侧边导航栏---------------------------------------->
+        <div class="col-md-2">
+            <ul id="main-nav" class="nav nav-tabs nav-stacked" style="">
+                <li class="active">
+                    <a href="#all">
+                        <i class="glyphicon glyphicon-th-large"> </i>
+                        All
+                    </a>
+                </li>
+                <li>
+                    <a href="#systemSetting" class="nav-header collapsed" data-toggle="collapse">
+                        <i class="glyphicon glyphicon-briefcase"></i>
+                        Work
+                        <span class="pull-right glyphicon glyphicon-chevron-down"></span>
+                        <span class="label label-warning pull-right">999+</span>
+                    </a>
+                    <ul id="systemSetting" class="nav nav-list collapse secondmenu" style="height: 0px;">
+                        <li><a href="#"><i class="glyphicon glyphicon-send"></i>
+                            翻越长城</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-paperclip"></i>
+                            写代码</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-user"></i>
+                            生发 <span class="label label-warning pull-right">999+</span></a> </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="glyphicon glyphicon-cutlery"></i>
+                        Food
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-leaf"></i>
+                        Medicine
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                        Cosmetic
+                    </a>
+                </li>
+                <li>
+                    <a id="modal-000000" href="#modal-container-000000" role="button" class="btn" data-toggle="modal">
+                        <i class="glyphicon glyphicon-plus-sign"></i>
+                        Add Activities
+                    </a>
+                    <div class="modal fade" id="modal-container-000000" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h4 class="modal-title" id="myModalLabel0" style="text-align: center">
+                                        <b>Details</b>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div>
+                                        <form class="form-inline" role="form" method="POST" id="add">
+                                        <div class="form-group">
+                                            <label>物品名字：</label>
+                                            <input type="text" class="form-control" id="name" placeholder="请输入活动的名字">
+                                        </div>
+                                        <br/>
+                                        <br/>
+                                        <div class="dateselect" style="border:white">
+                                            <form action="time" class="form-inline" id="dateselect"><!--行内修改？-->
+                                                <label>生产日期：</label><input type="date" name="body">
+                                                <label>限用日期：</label><input type="date" name="body">
+                                            </form>
+                                        </div>
+                                        <br/>
+                                        <!--<form class="form-inline">&lt;!&ndash;特殊的添加为什么？？？&ndash;&gt;-->
+                                        <label>选择分类：</label>
+                                        <select class="form-control">
+                                            <option fieldset disabled class="">Work(Testing)</option>
+                                            <option> Food</option>
+                                            <option> Medicine</option>
+                                            <option> Cosmetic</option>
+                                        </select>
+                                        <!--</form>-->
+                                        <br/>
+                                        <!--<h5 style="text-align: center"><b>物品备注：</b></h5>-->
+                                        <label>物品备注：</label>
+                                        <textarea class="form-control " rows="1" placeholder="请输入活动的相关备忘" ></textarea>
+                                    </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-info" data-dismiss="modal" id="adds">添加</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!------------------------------------主体部分---------------------------------------->
+        <div class="col-md-10">
+            <div class="row clearfix">
+                <!--------------------------------------------------------------------------------------->
+                <div class="col-md-4 column">
+                    <h2>
+                        <span id="title">阿莫西林</span>
+                    </h2>
+                    <p>
+                        <b>生产日期：</b><span id="Pyear01">xxxx</span>/<span id="Pmonth01">xx</span>/<span id="Pday01">xx</span><br/>
+                        <b>限用日期：</b><span id="Eyear01">xxxx</span>/<span id="Emonth01">xx</span>/<span id="Eday01">xx</span><br/>
+                        <b>剩余天数：</b><span id="rest_day">xxxx</span>天<br/>
+                        <b>备注：</b><span id="Notes01">xxxxxx</span>
+                    </p>
+                    <!--<p>
+                        <a class="btn" href="#">View details »</a>
+                    </p>-->
+                    <a id="modal-000001" href="#modal-container-000001" role="button" class="btn" data-toggle="modal">Edit</a>
+
+                    <div class="modal fade" id="modal-container-000001" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h4 class="modal-title" id="myModalLabel1" style="text-align: center">
+                                        <b>Details</b>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div>
+                                        <form class="form-inline" role="form">
+                                            <div class="form-group">
+                                                <label>物品名字：</label>
+                                                <input type="text" class="form-control"  value="" placeholder="请输入活动的名字">
+                                            </div>
+                                            <br/>
+                                            <br/>
+                                            <div class="dateselect" style="border:white">
+                                                <form action="time" class="form-inline" ><!--行内修改？-->
+                                                    <label>生产日期：</label><input type="date" name="body" value="">
+                                                    <label>限用日期：</label><input type="date" name="body" value="">
+                                                </form>
+                                            </div>
+                                            <br/>
+                                            <div class="category">
+                                                <form class="form-inline"><!--特殊的添加为什么？？？-->
+                                                    <label>选择分类：</label>
+                                                    <select class="form-control">
+                                                        <option fieldset disabled class="">Work(Testing)</option>
+                                                        <option> Food</option>
+                                                        <option> Medicine</option>
+                                                        <option> Cosmetic</option>
+                                                    </select>
+                                                </form>
+                                            </div>
+                                            <br/>
+                                            <!--<h5 style="text-align: center"><b>物品备注：</b></h5>-->
+                                            <label>物品备注：</label>
+                                            <textarea class="form-control " rows="1"  placeholder="请输入活动的相关备忘" ></textarea>
+                                        </form>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-info" data-dismiss="modal" id="save01">保存</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="delete01">销毁</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2>
+                         <span id="title2">头孢</span>
+                    </h2>
+                    <p>
+                        <b>生产日期：</b><span id="Pyear02">xxxx</span>/<span id="Pmonth2">xx</span>/<span id="Pday02">xx</span><br/>
+                        <b>限用日期：</b><span id="Eyear02">xxxx</span>/<span id="Emonth2">xx</span>/<span id="Eday02">xx</span><br/>
+                        <b>剩余天数：</b><span id="rest_day02">xxxx</span>天<br/>
+                        <b>备注：</b><span id="Notes02">xxxxxx</span>
+                    </p>
+                    <!--<p>
+                        <a class="btn" href="#">View details »</a>
+                    </p>-->
+                    <a id="modal-000002" href="#modal-container-000002" role="button" class="btn" data-toggle="modal">Edit</a>
+                    <div class="modal fade" id="modal-container-000002" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h4 class="modal-title" id="myModalLabel2" style="text-align: center">
+                                        <b>Details</b>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div>
+                                        <form class="form-inline" role="form">
+                                            <div class="form-group">
+                                                <label>物品名字：</label>
+                                                <input type="text" class="form-control"  value="" placeholder="请输入活动的名字">
+                                            </div>
+                                            <br/>
+                                            <br/>
+                                            <div class="dateselect" style="border:white">
+                                                <form action="time" class="form-inline" ><!--行内修改？-->
+                                                    <label>生产日期：</label><input type="date" name="body" value="">
+                                                    <label>限用日期：</label><input type="date" name="body" value="">
+                                                </form>
+                                            </div>
+                                            <br/>
+                                            <div class="category">
+                                                <form class="form-inline"><!--特殊的添加为什么？？？-->
+                                                    <label>选择分类：</label>
+                                                    <select class="form-control">
+                                                        <option fieldset disabled class="">Work(Testing)</option>
+                                                        <option> Food</option>
+                                                        <option> Medicine</option>
+                                                        <option> Cosmetic</option>
+                                                    </select>
+                                                </form>
+                                            </div>
+                                            <br/>
+                                            <!--<h5 style="text-align: center"><b>物品备注：</b></h5>-->
+                                            <label>物品备注：</label>
+                                            <textarea class="form-control " rows="1"  placeholder="请输入活动的相关备忘" ></textarea>
+                                        </form>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-info" data-dismiss="modal" id="save02">保存</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="delete02">销毁</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!----------------------------------左部分------------------------------------------------>
+                <div class="col-md-4 column">
+                    <h2>
+                        <span id="title3">阿莫西林</span>
+                    </h2>
+                    <p>
+                        <b>生产日期：</b><span id="Pyear03">xxxx</span>/<span id="Pmonth03">xx</span>/<span id="Pday03">xx</span><br/>
+                        <b>限用日期：</b><span id="Eyear03">xxxx</span>/<span id="Emonth03">xx</span>/<span id="Eday03">xx</span><br/>
+                        <b>剩余天数：</b><span id="rest_day30">xxxx</span>天<br/>
+                        <b>备注：</b><span id="Notes03">xxxxxx</span>
+                    </p>
+                    <!--<p>
+                        <a class="btn" href="#">View details »</a>
+                    </p>-->
+                    <a id="modal-000003" href="#modal-container-000003" role="button" class="btn" data-toggle="modal">Edit</a>
+
+                    <div class="modal fade" id="modal-container-000003" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h4 class="modal-title" id="myModalLabel3" style="text-align: center">
+                                        <b>Details</b>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div>
+                                        <form class="form-inline" role="form">
+                                            <div class="form-group">
+                                                <label>物品名字：</label>
+                                                <input type="text" class="form-control"  value="" placeholder="请输入活动的名字">
+                                            </div>
+                                            <br/>
+                                            <br/>
+                                            <div class="dateselect" style="border:white">
+                                                <form action="time" class="form-inline" ><!--行内修改？-->
+                                                    <label>生产日期：</label><input type="date" name="body" value="">
+                                                    <label>限用日期：</label><input type="date" name="body" value="">
+                                                </form>
+                                            </div>
+                                            <br/>
+                                            <div class="category">
+                                                <form class="form-inline"><!--特殊的添加为什么？？？-->
+                                                    <label>选择分类：</label>
+                                                    <select class="form-control">
+                                                        <option fieldset disabled class="">Work(Testing)</option>
+                                                        <option> Food</option>
+                                                        <option> Medicine</option>
+                                                        <option> Cosmetic</option>
+                                                    </select>
+                                                </form>
+                                            </div>
+                                            <br/>
+                                            <!--<h5 style="text-align: center"><b>物品备注：</b></h5>-->
+                                            <label>物品备注：</label>
+                                            <textarea class="form-control " rows="1"  placeholder="请输入活动的相关备忘" ></textarea>
+                                        </form>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-info" data-dismiss="modal" id="save03">保存</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="delete03">销毁</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2>
+                        <span id="title04">头孢</span>
+                    </h2>
+                    <p>
+                        <b>生产日期：</b><span id="Pyear04">xxxx</span>/<span id="Pmonth04">xx</span>/<span id="Pday04">xx</span><br/>
+                        <b>限用日期：</b><span id="Eyear04">xxxx</span>/<span id="Emonth04">xx</span>/<span id="Eday04">xx</span><br/>
+                        <b>剩余天数：</b><span id="rest_day04">xxxx</span>天<br/>
+                        <b>备注：</b><span id="Notes04">xxxxxx</span>
+                    </p>
+                    <!--<p>
+                        <a class="btn" href="#">View details »</a>
+                    </p>-->
+                    <a id="modal-000004" href="#modal-container-000004" role="button" class="btn" data-toggle="modal">Edit</a>
+                    <div class="modal fade" id="modal-container-000004" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h4 class="modal-title" id="myModalLabel4" style="text-align: center">
+                                        <b>Details</b>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div>
+                                        <form class="form-inline" role="form">
+                                            <div class="form-group">
+                                                <label>物品名字：</label>
+                                                <input type="text" class="form-control"  value="" placeholder="请输入活动的名字">
+                                            </div>
+                                            <br/>
+                                            <br/>
+                                            <div class="dateselect" style="border:white">
+                                                <form action="time" class="form-inline" ><!--行内修改？-->
+                                                    <label>生产日期：</label><input type="date" name="body" value="">
+                                                    <label>限用日期：</label><input type="date" name="body" value="">
+                                                </form>
+                                            </div>
+                                            <br/>
+                                            <div class="category">
+                                                <form class="form-inline"><!--特殊的添加为什么？？？-->
+                                                    <label>选择分类：</label>
+                                                    <select class="form-control">
+                                                        <option fieldset disabled class="">Work(Testing)</option>
+                                                        <option> Food</option>
+                                                        <option> Medicine</option>
+                                                        <option> Cosmetic</option>
+                                                    </select>
+                                                </form>
+                                            </div>
+                                            <br/>
+                                            <!--<h5 style="text-align: center"><b>物品备注：</b></h5>-->
+                                            <label>物品备注：</label>
+                                            <textarea class="form-control " rows="1"  placeholder="请输入活动的相关备忘" ></textarea>
+                                        </form>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-info" data-dismiss="modal" id="save04">保存</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="delete04">销毁</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!----------------------------------中部分------------------------------------------------>
+                <div class="col-md-4 column">
+                    <h2>
+                        <span id="title05">阿莫西林</span>
+                    </h2>
+                    <p>
+                        <b>生产日期：</b><span id="Pyear05">xxxx</span>/<span id="Pmonth05">xx</span>/<span id="Pday05">xx</span><br/>
+                        <b>限用日期：</b><span id="Eyear05">xxxx</span>/<span id="Emonth05">xx</span>/<span id="Eday05">xx</span><br/>
+                        <b>剩余天数：</b><span id="rest_day05">xxxx</span>天<br/>
+                        <b>备注：</b><span id="Notes05">xxxxxx</span>
+                    </p>
+                    <!--<p>
+                        <a class="btn" href="#">View details »</a>
+                    </p>-->
+                    <a id="modal-000005" href="#modal-container-000005" role="button" class="btn" data-toggle="modal">Edit</a>
+
+                    <div class="modal fade" id="modal-container-000005" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h4 class="modal-title" id="myModalLabel5" style="text-align: center">
+                                        <b>Details</b>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div>
+                                        <form class="form-inline" role="form">
+                                            <div class="form-group">
+                                                <label>物品名字：</label>
+                                                <input type="text" class="form-control"  value="" placeholder="请输入活动的名字">
+                                            </div>
+                                            <br/>
+                                            <br/>
+                                            <div class="dateselect" style="border:white">
+                                                <form action="time" class="form-inline" ><!--行内修改？-->
+                                                    <label>生产日期：</label><input type="date" name="body" value="">
+                                                    <label>限用日期：</label><input type="date" name="body" value="">
+                                                </form>
+                                            </div>
+                                            <br/>
+                                            <div class="category">
+                                                <form class="form-inline"><!--特殊的添加为什么？？？-->
+                                                    <label>选择分类：</label>
+                                                    <select class="form-control">
+                                                        <option fieldset disabled class="">Work(Testing)</option>
+                                                        <option> Food</option>
+                                                        <option> Medicine</option>
+                                                        <option> Cosmetic</option>
+                                                    </select>
+                                                </form>
+                                            </div>
+                                            <br/>
+                                            <!--<h5 style="text-align: center"><b>物品备注：</b></h5>-->
+                                            <label>物品备注：</label>
+                                            <textarea class="form-control " rows="1"  placeholder="请输入活动的相关备忘" ></textarea>
+                                        </form>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-info" data-dismiss="modal" id="save05">保存</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="delete05">销毁</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2>
+                        <span id="title06">头孢</span>
+                    </h2>
+                    <p>
+                        <b>生产日期：</b><span id="Pyear06">xxxx</span>/<span id="Pmonth06">xx</span>/<span id="Pday06">xx</span><br/>
+                        <b>限用日期：</b><span id="Eyear06">xxxx</span>/<span id="Emonth06">xx</span>/<span id="Eday06">xx</span><br/>
+                        <b>剩余天数：</b><span id="rest_day06">xxxx</span>天<br/>
+                        <b>备注：</b><span id="Notes06">xxxxxx</span>
+                    </p>
+                    <!--<p>
+                        <a class="btn" href="#">View details »</a>
+                    </p>-->
+                    <a id="modal-000006" href="#modal-container-000006" role="button" class="btn" data-toggle="modal">Edit</a>
+                    <div class="modal fade" id="modal-container-000006" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h4 class="modal-title" id="myModalLabel6" style="text-align: center">
+                                        <b>Details</b>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div>
+                                        <form class="form-inline" role="form">
+                                            <div class="form-group">
+                                                <label>物品名字：</label>
+                                                <input type="text" class="form-control"  value="" placeholder="请输入活动的名字">
+                                            </div>
+                                            <br/>
+                                            <br/>
+                                            <div class="dateselect" style="border:white">
+                                                <form action="time" class="form-inline" ><!--行内修改？-->
+                                                    <label>生产日期：</label><input type="date" name="body" value="">
+                                                    <label>限用日期：</label><input type="date" name="body" value="">
+                                                </form>
+                                            </div>
+                                            <br/>
+                                            <div class="category">
+                                                <form class="form-inline"><!--特殊的添加为什么？？？-->
+                                                    <label>选择分类：</label>
+                                                    <select class="form-control">
+                                                        <option fieldset disabled class="">Work(Testing)</option>
+                                                        <option> Food</option>
+                                                        <option> Medicine</option>
+                                                        <option> Cosmetic</option>
+                                                    </select>
+                                                </form>
+                                            </div>
+                                            <br/>
+                                            <!--<h5 style="text-align: center"><b>物品备注：</b></h5>-->
+                                            <label>物品备注：</label>
+                                            <textarea class="form-control " rows="1"  placeholder="请输入活动的相关备忘" ></textarea>
+                                        </form>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-info" data-dismiss="modal" id="save06">保存</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="delete06">销毁</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!----------------------------------右部分------------------------------------------------>
+            </div>
+            <!------------------------------------分页显示---------------------------------------------->
+            <div class="row clearfix">
+                <div class="col-md-4 column">
+                </div>
+                <div class="col-md-6 column">
+                    <ul class="pagination">
+                        <li><a href="#">Prev</a></li>
+                        <li><a href="#">1</a></li>
+                        <!--li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>-->
+                        <li><a href="#">Next</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 column">
+                </div>
+            </div>
+            <!--------------------------------------------------------------------------------------->
+    </div>
+    </div>
+</div>
+<!--------------------------------------------------------------------------------------->
+<!--<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>-->
+<!--<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>-->
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<!--------------------------------------------------text------------------------------------------------------->
+<script type="text/javascript">
+    var xmlhttp;
+    if(window.XMLHttpRequest){
+        xmlhttp=new XMLHttpRequest();
+    }else{
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.open("DELETE","/api/things/manage/",true);
+    xmlhttp.send(null);
+    var JSON_Object={
+        "Pyear":"2019",
+        "Pmonth":"12",
+        "Pday":"12",
+        "Eyear":"2019",
+        "Emonth":"12",
+        "Eday":"22",
+        "rest_day":"233",
+        "Notes":"ceuixbxi"
+    }
+    document.getElementById("Pyear01").innerText=JSON_Object.Pyear
+    document.getElementById("Pmonth01").innerText=JSON_Object.Pmonth
+    document.getElementById("Pday01").innerText=JSON_Object.Pday
+    document.getElementById("Eyear01").innerText=JSON_Object.Eyear
+    document.getElementById("Emonth01").innerText=JSON_Object.Emonth
+    document.getElementById("Eday01").innerText=JSON_Object.Eday
+    document.getElementById("Notes01").innerText=JSON_Object.Notes
+</script>
+<!--------------------------------------------------list all request------------------------------------------------------->
+<script>
+    $.ajax({
+        url: "/api/things/list/",
+        contentType: 'application/json;charset=UTF-8',
+        dataType: "json",
+        data: JSON.stringify(data),
+        type: "GET",
+        async: false,
+        success: function (JSON_Object) {
+            alert("请求成功");
+            console.log(req.query)
+            document.getElementById("Pyear01").innerText=JSON_Object.Pyear
+            document.getElementById("Pmonth01").innerText=JSON_Object.Pmonth
+            document.getElementById("Pday01").innerText=JSON_Object.Pday
+            document.getElementById("Eyear01").innerText=JSON_Object.Eyear
+            document.getElementById("Emonth01").innerText=JSON_Object.Emonth
+            document.getElementById("Eday01").innerText=JSON_Object.Eday
+            document.getElementById("Notes01").innerText=JSON_Object.Notes
+
+            document.getElementById("Pyear02").innerText=JSON_Object.Pyear
+            document.getElementById("Pmonth02").innerText=JSON_Object.Pmonth
+            document.getElementById("Pday02").innerText=JSON_Object.Pday
+            document.getElementById("Eyear02").innerText=JSON_Object.Eyear
+            document.getElementById("Emonth02").innerText=JSON_Object.Emonth
+            document.getElementById("Eday02").innerText=JSON_Object.Eday
+            document.getElementById("Notes02").innerText=JSON_Object.Notes
+
+            document.getElementById("Pyear03").innerText=JSON_Object.Pyear
+            document.getElementById("Pmonth03").innerText=JSON_Object.Pmonth
+            document.getElementById("Pday03").innerText=JSON_Object.Pday
+            document.getElementById("Eyear03").innerText=JSON_Object.Eyear
+            document.getElementById("Emonth03").innerText=JSON_Object.Emonth
+            document.getElementById("Eday03").innerText=JSON_Object.Eday
+            document.getElementById("Notes03").innerText=JSON_Object.Notes
+
+            document.getElementById("Pyear04").innerText=JSON_Object.Pyear
+            document.getElementById("Pmonth04").innerText=JSON_Object.Pmonth
+            document.getElementById("Pday04").innerText=JSON_Object.Pday
+            document.getElementById("Eyear04").innerText=JSON_Object.Eyear
+            document.getElementById("Emonth04").innerText=JSON_Object.Emonth
+            document.getElementById("Eday04").innerText=JSON_Object.Eday
+            document.getElementById("Notes04").innerText=JSON_Object.Notes
+
+            document.getElementById("Pyear05").innerText=JSON_Object.Pyear
+            document.getElementById("Pmonth05").innerText=JSON_Object.Pmonth
+            document.getElementById("Pday05").innerText=JSON_Object.Pday
+            document.getElementById("Eyear05").innerText=JSON_Object.Eyear
+            document.getElementById("Emonth05").innerText=JSON_Object.Emonth
+            document.getElementById("Eday05").innerText=JSON_Object.Eday
+            document.getElementById("Notes05").innerText=JSON_Object.Notes
+
+            document.getElementById("Pyear06").innerText=JSON_Object.Pyear
+            document.getElementById("Pmonth06").innerText=JSON_Object.Pmonth
+            document.getElementById("Pday06").innerText=JSON_Object.Pday
+            document.getElementById("Eyear06").innerText=JSON_Object.Eyear
+            document.getElementById("Emonth06").innerText=JSON_Object.Emonth
+            document.getElementById("Eday06").innerText=JSON_Object.Eday
+            document.getElementById("Notes06").innerText=JSON_Object.Notes
+        },
+        error: function () {
+            console.log(req.query)
+        }
+    });
+</script>
+<!----------------------------------------添加物品------------------------------------------------------->
+<script>
+    $.ajax({
+        url: "/api/things/manage",
+        contentType: 'application/json;charset=UTF-8',
+        dataType: "json",
+        date:{
+            "action":"add_thing"
+        },
+        /*data: JSON.stringify(data),*/
+        type: "GET",
+        async: false,
+        success: function (JSON_Object) {
+            alert("请求成功");
+            console.log(xhr,status);
+
+        },
+        error: function () {
+            alert("请求失败");
+            console.log(data,status);
+        }
+    });
+</script>
+<!------------------------------------------------------------------------------------------------------>
+<!----------------------------------------list某件物品------------------------------------------------------->
+<script>
+    $('#adds')({
+        url:'/api/things/manage',
+        type:'POST',
+        ContentType: 'application/json;charset=UTF-8',
+        data: JSON.stringify(params),
+        dataType: "json",
+        success: function (res) {
+            console.log(res)
+        }
+    })
+    /*$.ajax({
+            url: "/api/things/manage",
+            contentType: 'application/json;charset=UTF-8',
+            dataType: "json",
+            data: JSON.stringify(data),
+            type: "GET",
+            async: false,
+            success: function (JSON_Object) {
+                alert("请求成功");
+
+            },
+            error: function () {
+                alert("请求失败");
+            }
+    });*/
+</script>
+<!------------------------------------------------------------------------------------------------------>
+<!----------------------------------------删除物品------------------------------------------------------->
+<script>
+    $('#delete01')({
+        url:'/api/things/manage/',
+        type:'DELETE',
+        ContentType: 'application/json;charset=UTF-8',
+        data: JSON.stringify(params),
+        dataType: "json",
+        success: function (res) {
+            console.log(res)
+        }
+    })
+    $('#delete02')({
+        url:'/api/things/manage/',
+        type:'DELETE',
+        ContentType: 'application/json;charset=UTF-8',
+        data: JSON.stringify(params),
+        dataType: "json",
+        success: function (res) {
+            console.log(res)
+        }
+    })
+    $('#delete03')({
+        url:'/api/things/manage/',
+        type:'DELETE',
+        ContentType: 'application/json;charset=UTF-8',
+        data: JSON.stringify(params),
+        dataType: "json",
+        success: function (res) {
+            console.log(res)
+        }
+    })
+    $('#delete04')({
+        url:'/api/things/manage/',
+        type:'DELETE',
+        ContentType: 'application/json;charset=UTF-8',
+        data: JSON.stringify(params),
+        dataType: "json",
+        success: function (res) {
+            console.log(res)
+        }
+    })
+    $('#delete05')({
+        url:'/api/things/manage/',
+        type:'DELETE',
+        ContentType: 'application/json;charset=UTF-8',
+        data: JSON.stringify(params),
+        dataType: "json",
+        success: function (res) {
+            console.log(res)
+        }
+    })
+    $('#delete06')({
+        url:'/api/things/manage/',
+        type:'DELETE',
+        ContentType: 'application/json;charset=UTF-8',
+        data: JSON.stringify(params),
+        dataType: "json",
+        success: function (res) {
+            console.log(res)
+        }
+    })
+</script>
+<!------------------------------------------------------------------------------------------------------>
+<!----------------------------------------修改物品------------------------------------------------------->
+<script>
+    $('#save01')({
+        url:'/api/thing/manage/',
+        type:'PUT',
+        ContentType: 'application/json;charset=UTF-8',
+        data: JSON.stringify(params),
+        dataType: "json",
+        success: function (res) {
+            console.log(res)
+        }
+    })
+    $('#save02')({
+        url:'/api/things/manage/',
+        type:'PUT',
+        ContentType: 'application/json;charset=UTF-8',
+        data: JSON.stringify(params),
+        dataType: "json",
+        success: function (res) {
+            console.log(res)
+        }
+    })
+    $('#save03')({
+        url:'/api/things/manage/',
+        type:'PUT',
+        ContentType: 'application/json;charset=UTF-8',
+        data: JSON.stringify(params),
+        dataType: "json",
+        success: function (res) {
+            console.log(res)
+        }
+    })
+    $('#save04')({
+        url:'/api/things/manage/',
+        type:'PUT',
+        ContentType: 'application/json;charset=UTF-8',
+        data: JSON.stringify(params),
+        dataType: "json",
+        success: function (res) {
+            console.log(res)
+        }
+    })
+    $('#save05')({
+        url:'/api/things/manage/',
+        type:'PUT',
+        ContentType: 'application/json;charset=UTF-8',
+        data: JSON.stringify(params),
+        dataType: "json",
+        success: function (res) {
+            console.log(res)
+        }
+    })
+    $('#save06')({
+        url:'/api/things/manage/',
+        type:'PUT',
+        ContentType: 'application/json;charset=UTF-8',
+        data: JSON.stringify(params),
+        dataType: "json",
+        success: function (res) {
+            console.log(res)
+        }
+    })
+</script>
+<!------------------------------------------------------------------------------------------------------>
+</body>
+</html>
